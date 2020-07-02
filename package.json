@@ -1,0 +1,24 @@
+{
+  "name": "cd5108-coursework",
+  "version": "1.0.0",
+  "description": "By Akinola Soyinka (u1900067), Amit Mohindru (u1837071), Mirhaz Pradhan (u1810388) and Thomas Curry (u1900042)",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TWCurry/CD5108-Coursework.git"
+  },
+  "author": "Thomas Curry",
+  "contributors": [
+    {"name": "Akinola Soyinka"},
+    {"name": "Amit Mohindru"},
+    {"name": "Mirhaz Pradhan"}
+  ],
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/TWCurry/CD5108-Coursework/issues"
+  },
+  "homepage": "https://github.com/TWCurry/CD5108-Coursework#readme"
+}
