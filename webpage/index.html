@@ -30,26 +30,32 @@
     </head>
     <body>
         <h1>Covid-19 Data</h1>
-        <br>
         <h2>Insert Data</h2>
         <div class="section"><br>
             <form action="/addRecords" method="post" enctype="multipart/form-data"> <!-- Method is temporary, to be changed -->
                 <table>
-                    <tr>
-                        <td><b>Country</b></td><td><input type="text" class="inputBox" id="insertCountry"></td>
-                    </tr>
-                    <tr>
-                        <td><b>State</b></td><td><input type="text" class="inputBox" id="insertState"></td>
-                    </tr>
-                    <tr>
-                        <td><b>Cases</b></td><td><input type="text" class="inputBox" id="insertCases"></td>
-                    </tr>
-                    <tr>
-                        <td><b>Deaths</b></td><td><input type="text" class="inputBox" id="insertDeaths"></td>
-                    </tr>
-                    <tr>
-                        <td><b>Date</b></td><td><input type="date" class="inputBox" id="insertDate"></td>
-                    </tr>
+                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" id="insertCountry"></td></tr>
+                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" id="insertState"></td></tr>
+                    <tr><td><b>Cases: </b></td><td><input type="text" class="inputBox" id="insertCases"></td></tr>
+                    <tr><td><b>Deaths: </b></td><td><input type="text" class="inputBox" id="insertDeaths"></td></tr>
+                    <tr><td><b>Date: </b></td><td><input type="date" class="inputBox" id="insertDate"></td></tr>
+                </table>
+                <br>
+                <input class="submitButton" type="submit"/>
+                <br>
+            </form>
+        </div>
+        <br>
+        <h2>Update Data</h2>
+        <div class="section">
+            <form action="/updateRecords" method="post" enctype="multipart/form-data"> <!-- Method is temporary, to be changed -->
+                <br>
+                <table>
+                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" id="updateCountry"></td></tr>
+                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" id="updateState"></td></tr>
+                    <tr><td><b>Cases: </b></td><td><input type="text" class="inputBox" id="updateCases"></td></tr>
+                    <tr><td><b>Deaths: </b></td><td><input type="text" class="inputBox" id="updateDeaths"></td></tr>
+                    <tr><td><b>Date: </b></td><td><input type="date" class="inputBox" id="updateDate"></td></tr>
                 </table>
                 <br>
                 <input class="submitButton" type="submit"/>
