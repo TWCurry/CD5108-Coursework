@@ -12,13 +12,22 @@
   },
   "author": "Thomas Curry",
   "contributors": [
-    {"name": "Akinola Soyinka"},
-    {"name": "Amit Mohindru"},
-    {"name": "Mirhaz Pradhan"}
+    {
+      "name": "Akinola Soyinka"
+    },
+    {
+      "name": "Amit Mohindru"
+    },
+    {
+      "name": "Mirhaz Pradhan"
+    }
   ],
   "license": "GPL-2.0-only",
   "bugs": {
     "url": "https://github.com/TWCurry/CD5108-Coursework/issues"
   },
-  "homepage": "https://github.com/TWCurry/CD5108-Coursework#readme"
+  "homepage": "https://github.com/TWCurry/CD5108-Coursework#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
