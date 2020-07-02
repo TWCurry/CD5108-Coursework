@@ -14,17 +14,25 @@
                 background-color: rgb(187, 187, 187);
                 display: block;
                 position: relative;
-                width: 500px;
+                width: 350px;
             }
             .inputBox{
+                border-radius: 5px;
+            }
+            .submitButton{
+                display: block;
+                position: relative;
+                margin: auto;
+                width: 50%;
                 border-radius: 5px;
             }
         </style>
     </head>
     <body>
         <h1>Covid-19 Data</h1>
-        <div class="section">
-            <h2>Insert Data</h2>
+        <br>
+        <h2>Insert Data</h2>
+        <div class="section"><br>
             <table>
                 <tr>
                     <td><b>Country</b></td><td><input type="text" class="inputBox" id="insertCountry"></td>
@@ -42,6 +50,8 @@
                     <td><b>Date</b></td><td><input type="date" class="inputBox" id="insertDate"></td>
                 </tr>
             </table>
+            <br>
+            <input class="submitButton" type="submit"/>
             <br>
         </div>
     </body>
