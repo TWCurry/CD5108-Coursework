@@ -2,8 +2,47 @@
 <html>
     <head>
         <title>Covid-19 Data</title>
+        <!-- Styles (Since external stylesheets are not supported) -->
+        <style>
+            body{
+                font-family: "graphik", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background-color: white;
+                color: black;
+            }
+            .section{
+                border: 3px inset rgb(126, 126, 126);
+                background-color: rgb(187, 187, 187);
+                display: block;
+                position: relative;
+                width: 500px;
+            }
+            .inputBox{
+                border-radius: 5px;
+            }
+        </style>
     </head>
     <body>
         <h1>Covid-19 Data</h1>
+        <div class="section">
+            <h2>Insert Data</h2>
+            <table>
+                <tr>
+                    <td><b>Country</b></td><td><input type="text" class="inputBox" id="insertCountry"></td>
+                </tr>
+                <tr>
+                    <td><b>State</b></td><td><input type="text" class="inputBox" id="insertState"></td>
+                </tr>
+                <tr>
+                    <td><b>Cases</b></td><td><input type="text" class="inputBox" id="insertCases"></td>
+                </tr>
+                <tr>
+                    <td><b>Deaths</b></td><td><input type="text" class="inputBox" id="insertDeaths"></td>
+                </tr>
+                <tr>
+                    <td><b>Date</b></td><td><input type="date" class="inputBox" id="insertDate"></td>
+                </tr>
+            </table>
+            <br>
+        </div>
     </body>
 </html>
