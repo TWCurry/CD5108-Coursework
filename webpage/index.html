@@ -76,5 +76,19 @@
                 <br>
             </form>
         </div>
+        <br>
+        <h2>Delete Data for Given State and Country</h2>
+        <div class="section">
+            <form action="/deleteRecords" method="post" enctype="multipart/form-data"> <!-- Method is temporary, to be changed -->
+                <br>
+                <table>
+                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" id="deleteCountry"></td></tr>
+                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" id="deleteState"></td></tr>
+                </table>
+                <br>
+                <input class="submitButton" type="submit"/>
+                <br>
+            </form>
+        </div>
     </body>
 </html>
