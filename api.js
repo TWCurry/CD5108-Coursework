@@ -33,7 +33,11 @@ dbConn.then(function (client){
 
     // Add record(s)
     app.post('/addRecords', function (req, res) {
-        console.log(req.body);
+        if (req.body.insertCountry == "" || req.body.insertState == "" || req.body.insertCases == "" || req.body.insertDeaths == "" || req.body.insertDate == ""){
+            console.log("Incorrect data sent.");
+            displayErrorPage(res, "Missing data. Please ensure all forms are correctly filled.");
+        }
+        // collection.insertOne({"Studentid":1,"name":"Arish","GPA":2.3});
     });
 
     // Update record(s)
@@ -55,3 +59,8 @@ dbConn.then(function (client){
 });
 
 dbConn.catch(function (err) {console.error(err)});
+
+function displayErrorPage(res, errorMessage){
+    let htmlData = `<html><head><title>Error</title></head><body><h1>Error</h1><h3>We're sorry, we've encountered an error:</h3>${errorMessage}</body></html>`;
+    res.send(htmlData);
+}
