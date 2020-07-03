@@ -36,8 +36,11 @@ dbConn.then(function (client){
         if (req.body.insertCountry == "" || req.body.insertState == "" || req.body.insertCases == "" || req.body.insertDeaths == "" || req.body.insertDate == ""){
             console.log("Incorrect data sent.");
             displayErrorPage(res, "Missing data. Please ensure all forms are correctly filled.");
+        } else {
+            collection.insertOne({"date": req.body.insertDate, "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "country": req.body.insertCountry});
+            console.log("Data inserted.");
+            res.send("Data successfully inserted.");
         }
-        // collection.insertOne({"Studentid":1,"name":"Arish","GPA":2.3});
     });
 
     // Update record(s)
