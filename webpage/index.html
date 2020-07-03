@@ -32,13 +32,13 @@
         <h1>Covid-19 Data</h1>
         <h2>Insert Data</h2>
         <div class="section"><br>
-            <form action="/addRecords" method="post" enctype="multipart/form-data"> <!-- Method is temporary, to be changed -->
+            <form action="/addRecords" method="post"> <!-- Method is temporary, to be changed -->
                 <table>
-                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" id="insertCountry"></td></tr>
-                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" id="insertState"></td></tr>
-                    <tr><td><b>Cases: </b></td><td><input type="text" class="inputBox" id="insertCases"></td></tr>
-                    <tr><td><b>Deaths: </b></td><td><input type="text" class="inputBox" id="insertDeaths"></td></tr>
-                    <tr><td><b>Date: </b></td><td><input type="date" class="inputBox" id="insertDate"></td></tr>
+                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" name="insertCountry"></td></tr>
+                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" name="insertState"></td></tr>
+                    <tr><td><b>Cases: </b></td><td><input type="text" class="inputBox" name="insertCases"></td></tr>
+                    <tr><td><b>Deaths: </b></td><td><input type="text" class="inputBox" name="insertDeaths"></td></tr>
+                    <tr><td><b>Date: </b></td><td><input type="date" class="inputBox" name="insertDate"></td></tr>
                 </table>
                 <br>
                 <input class="submitButton" type="submit"/>
@@ -48,14 +48,14 @@
         <br>
         <h2>Update Data</h2>
         <div class="section">
-            <form action="/updateRecords" method="post" enctype="multipart/form-data"> <!-- Method is temporary, to be changed -->
+            <form action="/updateRecords" method="post"> <!-- Method is temporary, to be changed -->
                 <br>
                 <table>
-                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" id="updateCountry"></td></tr>
-                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" id="updateState"></td></tr>
-                    <tr><td><b>Cases: </b></td><td><input type="text" class="inputBox" id="updateCases"></td></tr>
-                    <tr><td><b>Deaths: </b></td><td><input type="text" class="inputBox" id="updateDeaths"></td></tr>
-                    <tr><td><b>Date: </b></td><td><input type="date" class="inputBox" id="updateDate"></td></tr>
+                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" name="updateCountry"></td></tr>
+                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" name="updateState"></td></tr>
+                    <tr><td><b>Cases: </b></td><td><input type="text" class="inputBox" name="updateCases"></td></tr>
+                    <tr><td><b>Deaths: </b></td><td><input type="text" class="inputBox" name="updateDeaths"></td></tr>
+                    <tr><td><b>Date: </b></td><td><input type="date" class="inputBox" name="updateDate"></td></tr>
                 </table>
                 <br>
                 <input class="submitButton" type="submit"/>
@@ -65,11 +65,11 @@
         <br>
         <h2>Display Data for Given State and Country</h2>
         <div class="section">
-            <form action="/viewTotalCases" method="post" enctype="multipart/form-data"> <!-- Method is temporary, to be changed -->
+            <form action="/viewTotalCases" method="post"> <!-- Method is temporary, to be changed -->
                 <br>
                 <table>
-                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" id="updateCountry"></td></tr>
-                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" id="updateState"></td></tr>
+                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" name="updateCountry"></td></tr>
+                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" name="updateState"></td></tr>
                 </table>
                 <br>
                 <input class="submitButton" type="submit"/>
@@ -79,11 +79,11 @@
         <br>
         <h2>Delete Data for Given State and Country</h2>
         <div class="section">
-            <form action="/deleteRecords" method="post" enctype="multipart/form-data"> <!-- Method is temporary, to be changed -->
+            <form action="/deleteRecords" method="post"> <!-- Method is temporary, to be changed -->
                 <br>
                 <table>
-                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" id="deleteCountry"></td></tr>
-                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" id="deleteState"></td></tr>
+                    <tr><td><b>Country: </b></td><td><input type="text" class="inputBox" name="deleteCountry"></td></tr>
+                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" name="deleteState"></td></tr>
                 </table>
                 <br>
                 <input class="submitButton" type="submit"/>
@@ -92,7 +92,7 @@
         </div>
         <br>
         <h2>View First 20 Records</h2>
-        <form action="/view20Records" method="post" enctype="multipart/form-data">
+        <form action="/view20Records" method="post">
             <div class="section">
                 <br>
                 <input class="submitButton" type="submit"/>

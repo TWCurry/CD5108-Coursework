@@ -1,35 +1,57 @@
 // Imports
 var express = require('express');
+var MongoClient = require('mongodb').MongoClient
+var bodyParser = require("body-parser");
 
 // Globals
 var port = 3000;
+var dbUrl = 'mongodb://localhost:27017'
 
-// Initialise Express
-var app = express();
-app.listen(port, ()=> console.log(`API running at http://localhost:${port}`));
+// Conect to MongoDB
+var dbConn = MongoClient.connect(dbUrl ,{
+    //useNewUrlParser: true,
+     useUnifiedTopology: true
+  })
 
-// Send frontend form
-app.get('/', function (req, res) {
-    res.sendFile('webpage/index.html', { root: __dirname});
-});   
+dbConn.then(function (client){
+    var database = client.db("CD5108");
+    var collection = database.collection("covid-data");
 
-// Api Methods
+    // Initialise Express
+    var app = express();
+    app.listen(port, ()=> console.log(`API running at http://localhost:${port}`));
 
-// Add record(s)
+    // Intialise body-parser
+    app.use(bodyParser.urlencoded({ extended: false }));
 
-// Update record(s)
+    // Send frontend form
+    app.get('/', function (req, res) {
+        res.sendFile('webpage/index.html', { root: __dirname});
+    });
 
-// Show total number of cases
+    // Api Methods
 
-// Delete record(s)
+    // Add record(s)
+    app.post('/addRecords', function (req, res) {
+        console.log(req.body);
+    });
 
-// Fetch first 20 records
+    // Update record(s)
 
-// Display states where cases > 1 in a single day
+    // Show total number of cases
 
-// Display device information
+    // Delete record(s)
 
-// Display 404 page
-app.get('*', function(req, res){
-    res.sendFile('webpage/404.html', { root: __dirname});
+    // Fetch first 20 records
+
+    // Display states where cases > 1 in a single day
+
+    // Display device information
+
+    // Display 404 page
+    app.get('*', function(req, res){
+        res.sendFile('webpage/404.html', { root: __dirname});
+    });
 });
+
+dbConn.catch(function (err) {console.error(err)});

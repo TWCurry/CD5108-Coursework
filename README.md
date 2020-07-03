@@ -5,6 +5,11 @@ REST API developed using Express in Node.JS, with MongoDB backend to allow retri
 
 ## Required Packages
 * Express
+* MongoDB
+* Body-Parser
 
 ##  API Documentation
+*to be added*
+
+## Database Design
 *to be added*
