@@ -35,7 +35,7 @@ dbConn.then(function (client){
     app.post('/addRecords', function (req, res) {
         if (req.body.insertCounty == "" || req.body.insertState == "" || req.body.insertCases == "" || req.body.insertDeaths == "" || req.body.insertDate == ""){
             console.log("Incorrect data sent.");
-            displayErrorPage(res, "Missing data. Please ensure all forms are correctly filled.");
+            displayErrorPage(res, "Missing data. Please ensure all fields are correctly filled.");
         } else {
             collection.insertOne({"date": req.body.insertDate, "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty});
             console.log("Data inserted.");
@@ -44,6 +44,21 @@ dbConn.then(function (client){
     });
 
     // Update record(s)
+    app.post('/updateRecords', function (req, res) {
+        // Check that data for all fields has been sent
+        if (req.body.updateCountry == "" || req.body.updateState == "" || req.body.updateCases == "" || req.body.updateDeaths == "" || req.body.updateDate == ""){
+            // Missing data
+            console.log("Incorrect data sent.");
+            displayErrorPage(res, "Missing data. Please ensure all fields are correctly filled.");
+        } else {
+            // All data fields received
+            try {
+            collection.updateOne({"date": req.body.updateDate, "state": req.body.updateState, "cases": req.body.updateCases, "deaths": req.body.updateDeaths, "county": req.body.updateCounty})
+            } catch (error) {
+                displayErrorPage(res, `Could not write to DB - ${error}`)
+            }
+        }
+    });
 
     // Show total number of cases
 
