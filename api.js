@@ -33,11 +33,11 @@ dbConn.then(function (client){
 
     // Add record(s)
     app.post('/addRecords', function (req, res) {
-        if (req.body.insertCountry == "" || req.body.insertState == "" || req.body.insertCases == "" || req.body.insertDeaths == "" || req.body.insertDate == ""){
+        if (req.body.insertCounty == "" || req.body.insertState == "" || req.body.insertCases == "" || req.body.insertDeaths == "" || req.body.insertDate == ""){
             console.log("Incorrect data sent.");
             displayErrorPage(res, "Missing data. Please ensure all forms are correctly filled.");
         } else {
-            collection.insertOne({"date": req.body.insertDate, "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "country": req.body.insertCountry});
+            collection.insertOne({"date": req.body.insertDate, "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty});
             console.log("Data inserted.");
             res.send("Data successfully inserted.");
         }
