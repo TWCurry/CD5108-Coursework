@@ -2,6 +2,7 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient
 var bodyParser = require("body-parser");
+const { query } = require('express');
 
 // Globals
 var port = 3000;
@@ -53,7 +54,10 @@ dbConn.then(function (client){
         } else {
             // All data fields received
             try {
-            collection.updateOne({"date": req.body.updateDate, "state": req.body.updateState, "cases": req.body.updateCases, "deaths": req.body.updateDeaths, "county": req.body.updateCounty})
+                let query = {"state": req.body.updateState, "county": req.body.updateCounty};
+                let newData = { $set: {"date": req.body.updateDate, "cases": req.body.updateCases, "deaths": req.body.updateDeaths}};
+            collection.updateOne(query, newData);
+            res.send("Data successfully updated.");
             } catch (error) {
                 displayErrorPage(res, `Could not write to DB - ${error}`)
             }
