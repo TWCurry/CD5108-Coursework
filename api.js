@@ -2,8 +2,8 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient
 var bodyParser = require("body-parser");
-var os = require('os');
 var util = require('util');
+var os = require("os");
 
 // Globals
 var port = 3000;
@@ -48,6 +48,18 @@ dbConn.then(function (client){
     // Update record(s)
 
     // Show total number of cases
+    app.get('/viewTotalCases', function(req, res){
+        if (!req.query.updateState || !req.query.updateCounty){
+            console.log("Incorrect data sent ")
+            displayErrorPage(res, "Missing data - No State is mentioned.");
+        } else {
+            collection.find({county:req.query.updateCounty, state:req.query.updateState},{ _id:0}).toArray(function(err,result){
+                if (err) throw err;
+                console.log(result);
+                res.send(result);
+            })
+        }
+    })
 
     // Delete record(s)
 
