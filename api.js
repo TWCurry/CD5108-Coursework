@@ -62,8 +62,8 @@ dbConn.then(function (client){
             '<body><h1>Operating System Info</h1>'+
             '<table>'+
             '<tr><th>Temp Dir</th><td>' + os.tmpdir() + '</td></tr>'+
-            '<tr><th>Temp Dir</th><td>' + os.hostname() + '</td></tr>'+
-            '<tr><th>Temp Dir</th><td>' + os.type() + os.platform()+ os.arch()+ os.release()+ '</td></tr>'+
+            '<tr><th>Host Name</th><td>' + os.hostname() + '</td></tr>'+
+            '<tr><th>Type of OS</th><td>' + os.type() + os.platform()+ os.arch()+ os.release()+ '</td></tr>'+
             '<tr><th>Uptime</th><td>'+(os.uptime())/3600+'hours.userInfo'+util.inspect(os.userInfo())+'</td></tr>'+
             '<tr><th>Memory</th><td>total:'+os.totalmem()+'free:'+os.freemem()+'</td></tr>'+
             '<tr><th>CPU</th><td>'+util.inspect(os.cpus())+'</td></tr>'+
