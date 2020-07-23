@@ -2,6 +2,8 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient
 var bodyParser = require("body-parser");
+var os = require('os');
+var util = require('util');
 
 // Globals
 var port = 3000;
@@ -54,7 +56,21 @@ dbConn.then(function (client){
     // Display states where cases > 1 in a single day
 
     // Display device information
-
+    app.get('/displayDeviceInfo', function(req,res){
+        res.send(
+            '<html><head><title>Operating System Info</title></head>'+
+            '<body><h1>Operating System Info</h1>'+
+            '<table>'+
+            '<tr><th>Temp Dir</th><td>' + os.tmpdir() + '</td></tr>'+
+            '<tr><th>Host Name</th><td>' + os.hostname() + '</td></tr>'+
+            '<tr><th>Type of OS</th><td>' + os.type() + os.platform()+ os.arch()+ os.release()+ '</td></tr>'+
+            '<tr><th>Uptime</th><td>'+(os.uptime())/3600+'hours.userInfo'+util.inspect(os.userInfo())+'</td></tr>'+
+            '<tr><th>Memory</th><td>total:'+os.totalmem()+'free:'+os.freemem()+'</td></tr>'+
+            '<tr><th>CPU</th><td>'+util.inspect(os.cpus())+'</td></tr>'+
+            '<tr><th>Network</th><td>'+util.inspect(os.networkInterfaces())+'</td></tr>'+
+            '</table>'+'</body></html>'
+            )
+    })
     // Display 404 page
     app.get('*', function(req, res){
         res.sendFile('webpage/404.html', { root: __dirname});
