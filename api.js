@@ -51,9 +51,9 @@ dbConn.then(function (client){
     app.get('/viewTotalCases', function(req, res){
         if (!req.query.updateState || !req.query.updateCounty){
             console.log("Incorrect data sent ")
-            displayErrorPage(res, "Missing data - No State is mentioned.");
+            displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
-            collection.find({county:req.query.updateCounty, state:req.query.updateState},{ _id:0}).toArray(function(err,result){
+            collection.find({county:req.query.updateCounty, state:req.query.updateState},{ _id:0}).sort({date:-1}).limit(1).toArray(function(err,result){
                 if (err) throw err;
                 console.log(result);
                 res.send(result);
