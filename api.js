@@ -49,11 +49,11 @@ dbConn.then(function (client){
 
     // Show total number of cases
     app.get('/viewTotalCases', function(req, res){
-        if (!req.query.updateState || !req.query.updateCounty){
+        if (!req.query.displayState || !req.query.displayCounty){
             console.log("Incorrect data sent ")
             displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
-            collection.find({county:req.query.updateCounty, state:req.query.updateState},{ _id:0}).sort({date:-1}).limit(1).toArray(function(err,result){
+            collection.find({county:req.query.displayCounty, state:req.query.displayState},{ _id:0}).sort({date:-1}).limit(1).toArray(function(err,result){
                 if (err) throw err;
                 console.log(result);
                 res.send(result);
