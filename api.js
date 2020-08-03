@@ -4,6 +4,7 @@ var MongoClient = require('mongodb').MongoClient
 var bodyParser = require('body-parser');
 var util = require('util');
 var os = require('os');
+const { table } = require('console');
 
 // Globals
 var port = 3000;
@@ -72,10 +73,26 @@ dbConn.then(function (client){
     // Fetch first 20 records
 
     // Display states where cases > 1 in a single day
+    // TODO Need to confirm if this is for the current day, or just has had more than 1 case per day on any day
     app.get('/statesWithMultipleCases', function (req, res) {
         var query = { deaths: /^0*(?:[2-9]|[1-9]\d\d*)$/g }; // Regex string that matches any number higher than one
+        var states = []; // List of states where the cases > 1 for a day
+        // Actually fetch the data
         collection.find(query).toArray(function(err, result) {
-            console.log(result);
+            result.forEach((element) => {
+                if (!states.includes(element.state)){
+                    states.push(element.state);
+                }
+            });
+            // Form the html to create the table that will display the data
+            tableHtml = "<table>";
+            states.forEach((element) => {
+                tableHtml += `<tr><td>${element}</td></tr>`
+            });
+            tableHtml += "</table>";
+            var newHtml = `<html><head><title>States With Multiple Cases</title></head><body>${tableHtml}</body></html>`;
+            res.send(newHtml);
+            // res.send(states);
         });
     });
 
