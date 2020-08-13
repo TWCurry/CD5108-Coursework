@@ -72,21 +72,21 @@ dbConn.then(function (client){
             console.log("Incorrect data sent ")
             displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
-            collection.find({county:req.query.displayCounty, state:req.query.displayState},{ _id:0}).sort({date:-1}).limit(1).toArray(function(err,result){
+            collection.find({county:req.query.displayCounty, state:req.query.displayState},{ _id:0}).sort({date:-1}).toArray(function(err,result){
                 if (err) throw err;
-                console.log(result);
+                console.log(result[0]);
                 res.send(result);
             })
         }
     })
     
     // Delete record(s)
-    app.delete('/deleteRecords', function (req, res) {
-        if (req.body.insertCounty == "" || req.body.insertState == "" || req.body.insertCases == "" || req.body.insertDeaths == "" || req.body.insertDate == ""){
+    app.post('/deleteRecords', function (req, res) {
+        if (req.body.deleteCounty == "" || req.body.deleteState == ""){
             console.log("Incorrect data sent.");
             displayErrorPage(res, "Missing data. Please ensure all forms are correctly filled.");
         } else {
-            collection.removeOne({"date": req.body.insertDate, "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty});
+            collection.removeMany({"state": req.body.deleteState, "county": req.body.deleteCounty});
             console.log("Data deleted.");
             res.send("Data successfully deleted.");
         }
