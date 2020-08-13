@@ -93,11 +93,11 @@ dbConn.then(function (client){
     });
     // Fetch first 20 records
     app.get('/view20Records', function(req, res){
-        if (!req.query.displayState || !req.query.displayDate){
-            console.log("Incorrect data sent ")
+        if (!req.query.displayState20 || !req.query.displayDate20){
+            console.log("Incorrect data sent.")
             displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
-            collection.find({county:req.query.displayDate, state:req.query.displayState},{ _id:0}).limit(20).toArray(function(err,result){
+            collection.find({"date": req.query.displayDate20, "state": req.query.displayState20},{ _id:0}).limit(20).toArray(function(err,result){
                 if (err) throw err;
                 console.log(result);
                 res.send(result);
