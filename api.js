@@ -97,7 +97,8 @@ dbConn.then(function (client){
             console.log("Incorrect data sent.")
             displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
-            collection.find({"date": req.query.displayDate20, "state": req.query.displayState20},{ _id:0}).limit(20).toArray(function(err,result){
+            query = {"date": new Date("req.query.displayDate20"), "state": req.query.displayState20};
+            collection.find(query,{ _id:0}).limit(20).toArray(function(err,result){
                 if (err) throw err;
                 console.log(result);
                 res.send(result);
