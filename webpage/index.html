@@ -92,8 +92,14 @@
         </div>
         <br>
         <h2>View First 20 Records</h2>
-        <form action="/view20Records" method="post">
+        <form action="/view20Records" method="GET">
             <div class="section">
+                <br>
+                <table>
+                    <tr><td><b>Date: </b></td><td><input type="date" class="inputBox" name="displayDate20"></td></tr>
+                    <tr><td><b>State: </b></td><td><input type="text" class="inputBox" name="displayState20"></td></tr>
+                </table>
+                <br>
                 <br>
                 <input class="submitButton" type="submit"/>
                 <br>

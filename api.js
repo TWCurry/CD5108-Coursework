@@ -92,6 +92,20 @@ dbConn.then(function (client){
         }
     });
     // Fetch first 20 records
+    app.get('/view20Records', function(req, res){
+        if (!req.query.displayState20 || !req.query.displayDate20){
+            console.log("Incorrect data sent.")
+            displayErrorPage(res, "Missing data - Incorrect data inserted.");
+        } else {
+            query = {"date": new Date("req.query.displayDate20"), "state": req.query.displayState20};
+            collection.find(query,{ _id:0}).limit(20).toArray(function(err,result){
+                if (err) throw err;
+                console.log(result);
+                res.send(result);
+            })
+        }
+    })
+
 
     // Display states where cases > 1 in a single day
     // TODO Need to confirm if this is for the current day, or just has had more than 1 case per day on any day
