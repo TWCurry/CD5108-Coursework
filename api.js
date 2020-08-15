@@ -79,9 +79,13 @@ dbConn.then(function (client){
             displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
             collection.find({county:req.query.displayCounty, state:req.query.displayState},{ _id:0}).sort({date:-1}).toArray(function(err,result){
-                if (err) throw err;
-                console.log(result[0]);
-                res.send(result);
+                var noOfCases = 0;
+                var noOfDeaths = 0;
+                result.forEach((element) => {
+                    noOfCases += Number(element["cases"]);
+                    noOfDeaths += Number(element["deaths"]);
+                });
+                res.send({"cases": noOfCases, "deaths": noOfDeaths});
             })
         }
     })
