@@ -62,7 +62,10 @@ dbConn.then(function (client){
                 let query = {"state": req.body.updateState, "county": req.body.updateCounty};
                 let newData = { $set: {"date": req.body.updateDate, "cases": req.body.updateCases, "deaths": req.body.updateDeaths}};
                 collection.updateOne(query, newData);
-                res.send("Data successfully updated.");
+                collection.find({"state": req.body.updateState, "cases": req.body.updateCases, "deaths": req.body.updateDeaths, "county": req.body.updateCounty}).toArray(function(err,result){
+                    console.log(result);
+                    res.send(result);
+                });
             } catch (error) {
                 displayErrorPage(res, `Could not write to DB - ${error}`)
             }
