@@ -42,7 +42,10 @@ dbConn.then(function (client){
         } else {
             collection.insertOne({"date": req.body.insertDate, "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty});
             console.log("Data inserted.");
-            res.send("Data successfully inserted.");
+            collection.find({"date": req.body.insertDate, "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty}).toArray(function(err,result){
+                console.log(result);
+                res.send(result);
+            });
         }
     });
 
