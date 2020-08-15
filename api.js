@@ -97,10 +97,10 @@ dbConn.then(function (client){
             console.log("Incorrect data sent.")
             displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
-            query = {"date": new Date("req.query.displayDate20"), "state": req.query.displayState20};
+            query = {"date": new Date(req.query.displayDate20), "state": req.query.displayState20};
+            console.log(query);
             collection.find(query,{ _id:0}).limit(20).toArray(function(err,result){
                 if (err) throw err;
-                console.log(result);
                 res.send(result);
             })
         }
@@ -119,13 +119,7 @@ dbConn.then(function (client){
                     states.push(element.state);
                 }
             });
-            // Form the html to create the table that will display the data
-            tableHtml = "<table>";
-            states.forEach((element) => {
-                tableHtml += `<tr><td>${element}</td></tr>`
-            });
-            tableHtml += "</table>";
-            var newHtml = `<html><head><title>States With Multiple Cases</title></head><body>${tableHtml}</body></html>`;
+            newHtml = generateDisplayPage(states, "States With Multiple Cases");
             res.send(newHtml);
             // res.send(states);
         });
@@ -159,4 +153,20 @@ dbConn.catch(function (err) {console.error(err)});
 function displayErrorPage(res, errorMessage){
     let htmlData = `<html><head><title>Error</title></head><body><h1>Error</h1><h3>We're sorry, we've encountered an error:</h3>${errorMessage}</body></html>`;
     res.send(htmlData);
+}
+
+function generateDisplayPage(dataArray, pageTitle){
+    var mainHtml = "<html>";
+    // Add header sectione
+    mainHtml += `<head><title>${pageTitle}</title>`;
+    mainHtml += `<style></style></head>`;
+    mainHtml += `<body><h1>${pageTitle}</h1>`;
+    // Form the html to create the table that will display the data
+    tableHtml = "<table>";
+    dataArray.forEach((element) => {
+        tableHtml += `<tr><td>${element}</td></tr>`
+    });
+    tableHtml += "</table>";
+    mainHtml += `${tableHtml}</body></html>`;
+    return mainHtml;
 }
