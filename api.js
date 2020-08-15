@@ -40,9 +40,12 @@ dbConn.then(function (client){
             console.log("Incorrect data sent.");
             displayErrorPage(res, "Missing data. Please ensure all fields are correctly filled.");
         } else {
-            collection.insertOne({"date": req.body.insertDate, "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty});
+            collection.insertOne({"date": new Date(req.body.insertDate), "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty});
             console.log("Data inserted.");
-            res.send("Data successfully inserted.");
+            collection.find({"date": new Date(req.body.insertDate), "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty}).toArray(function(err,result){
+                console.log(result);
+                res.send(result);
+            });
         }
     });
 
@@ -57,9 +60,12 @@ dbConn.then(function (client){
             // All data fields received
             try {
                 let query = {"state": req.body.updateState, "county": req.body.updateCounty};
-                let newData = { $set: {"date": req.body.updateDate, "cases": req.body.updateCases, "deaths": req.body.updateDeaths}};
+                let newData = { $set: {"date": new Date(req.body.updateDate), "cases": req.body.updateCases, "deaths": req.body.updateDeaths}};
                 collection.updateOne(query, newData);
-                res.send("Data successfully updated.");
+                collection.find({"state": req.body.updateState, "cases": req.body.updateCases, "deaths": req.body.updateDeaths, "county": req.body.updateCounty}).toArray(function(err,result){
+                    console.log(result);
+                    res.send(result);
+                });
             } catch (error) {
                 displayErrorPage(res, `Could not write to DB - ${error}`)
             }
@@ -73,9 +79,13 @@ dbConn.then(function (client){
             displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
             collection.find({county:req.query.displayCounty, state:req.query.displayState},{ _id:0}).sort({date:-1}).toArray(function(err,result){
-                if (err) throw err;
-                console.log(result[0]);
-                res.send(result);
+                var noOfCases = 0;
+                var noOfDeaths = 0;
+                result.forEach((element) => {
+                    noOfCases += Number(element["cases"]);
+                    noOfDeaths += Number(element["deaths"]);
+                });
+                res.send({"cases": noOfCases, "deaths": noOfDeaths});
             })
         }
     })
