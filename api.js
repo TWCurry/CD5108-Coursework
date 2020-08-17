@@ -118,21 +118,25 @@ dbConn.then(function (client){
 
 
     // Display states where cases > 1 in a single day
-    // TODO Need to confirm if this is for the current day, or just has had more than 1 case per day on any day
     app.get('/statesWithMultipleCases', function (req, res) {
-        var query = { deaths: /^0*(?:[2-9]|[1-9]\d\d*)$/g }; // Regex string that matches any number higher than one
-        var states = []; // List of states where the cases > 1 for a day
-        // Actually fetch the data
-        collection.find(query).toArray(function(err, result) {
-            result.forEach((element) => {
-                if (!states.includes(element.state)){
-                    states.push(element.state);
-                }
+        if (!req.query.dateForMultipleCases){
+            console.log("Incorrect data sent.")
+            displayErrorPage(res, "Missing data - Incorrect data inserted.");
+        } else {
+            var query = { date: new Date(req.query.dateForMultipleCases), deaths: /^0*(?:[2-9]|[1-9]\d\d*)$/g }; // Regex string that matches any number higher than one
+            var states = []; // List of states where the cases > 1 for a day
+            // Actually fetch the data
+            collection.find(query).toArray(function(err, result) {
+                result.forEach((element) => {
+                    if (!states.includes(element.state)){
+                        states.push(element.state);
+                    }
+                });
+                newHtml = generateDisplayPage(states, "States With Multiple Cases");
+                res.send(newHtml);
+                // res.send(states);
             });
-            newHtml = generateDisplayPage(states, "States With Multiple Cases");
-            res.send(newHtml);
-            // res.send(states);
-        });
+        }
     });
 
     // Display device information
