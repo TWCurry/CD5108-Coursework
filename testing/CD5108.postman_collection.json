@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "fe10acb5-6b7d-4cf6-a327-2b676b5288f3",
+		"name": "CD5108",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Records",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/addRecords?insertState=Florida&insertCases=3&insertCounty=Orange&insertDeaths=1&insertDate=2020-08-13",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addRecords"
+					],
+					"query": [
+						{
+							"key": "insertState",
+							"value": "Florida"
+						},
+						{
+							"key": "insertCases",
+							"value": "3"
+						},
+						{
+							"key": "insertCounty",
+							"value": "Orange"
+						},
+						{
+							"key": "insertDeaths",
+							"value": "1"
+						},
+						{
+							"key": "insertDate",
+							"value": "2020-08-13"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Records",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/updateRecords?updateState=Florida&updateCases=3&updateCounty=Orange&updateDeaths=1&updateDate=2020-08-13",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"updateRecords"
+					],
+					"query": [
+						{
+							"key": "updateState",
+							"value": "Florida"
+						},
+						{
+							"key": "updateCases",
+							"value": "3"
+						},
+						{
+							"key": "updateCounty",
+							"value": "Orange"
+						},
+						{
+							"key": "updateDeaths",
+							"value": "1"
+						},
+						{
+							"key": "updateDate",
+							"value": "2020-08-13"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Total Cases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/viewTotalCases?displayState=California&displayCounty=Orange",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"viewTotalCases"
+					],
+					"query": [
+						{
+							"key": "displayState",
+							"value": "California"
+						},
+						{
+							"key": "displayCounty",
+							"value": "Orange"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View First 20 Records",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/view20Records?displayDate20=2020-08-13&displayCounty20=Orange",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"view20Records"
+					],
+					"query": [
+						{
+							"key": "displayDate20",
+							"value": "2020-08-13"
+						},
+						{
+							"key": "displayCounty20",
+							"value": "Orange"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View States with Multiple Cases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/statesWithMultipleCases",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"statesWithMultipleCases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Display Device Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/displayDeviceInfo",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"displayDeviceInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Records",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/deleteRecords?deleteState=California&deleteCounty=Orange",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"deleteRecords"
+					],
+					"query": [
+						{
+							"key": "deleteState",
+							"value": "California"
+						},
+						{
+							"key": "deleteCounty",
+							"value": "Orange"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
