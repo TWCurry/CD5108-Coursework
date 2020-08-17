@@ -43,7 +43,6 @@ dbConn.then(function (client){
             collection.insertOne({"date": new Date(req.body.insertDate), "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty});
             console.log("Data inserted.");
             collection.find({"date": new Date(req.body.insertDate), "state": req.body.insertState, "cases": req.body.insertCases, "deaths": req.body.insertDeaths, "county": req.body.insertCounty}).toArray(function(err,result){
-                console.log(result);
                 res.send(result);
             });
         }
@@ -63,7 +62,6 @@ dbConn.then(function (client){
                 let newData = { $set: {"date": new Date(req.body.updateDate), "cases": req.body.updateCases, "deaths": req.body.updateDeaths}};
                 collection.updateOne(query, newData);
                 collection.find({"state": req.body.updateState, "cases": req.body.updateCases, "deaths": req.body.updateDeaths, "county": req.body.updateCounty}).toArray(function(err,result){
-                    console.log(result);
                     res.send(result);
                 });
             } catch (error) {
@@ -108,7 +106,6 @@ dbConn.then(function (client){
             displayErrorPage(res, "Missing data - Incorrect data inserted.");
         } else {
             query = {"date": new Date(req.query.displayDate20), "state": req.query.displayState20};
-            console.log(query);
             collection.find(query,{ _id:0}).limit(20).toArray(function(err,result){
                 if (err) throw err;
                 res.send(result);
