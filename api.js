@@ -18,7 +18,7 @@ var dbConn = MongoClient.connect(dbUrl ,{
 
 dbConn.then(function (client){
     var database = client.db("CD5108");
-    var collection = database.collection("covid-data");
+    var collection = database.collection("coviddata");
 
     // Initialise Express
     var app = express();
